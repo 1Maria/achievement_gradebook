@@ -3,7 +3,7 @@ class StudentsController < ApplicationController
 
   def index
     @student = Student.all
-    @grades = Grade.all
+    @achievements = Achievement.all
   end
 
   def new

@@ -1,0 +1,744 @@
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateTeachers (20150205200430)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "teachers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150205200430"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+Migrating to CreateStudents (20150205200621)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "students" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "student_email" varchar, "teacher_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150205200621"]]
+  [1m[35m (1.0ms)[0m  commit transaction
+Migrating to CreateParents (20150205200651)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "parents" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "child_name" varchar, "teacher_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150205200651"]]
+  [1m[35m (2.4ms)[0m  commit transaction
+Migrating to Createpasswords (20150205223042)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "students" ADD "password_digest" varchar
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "parents" ADD "password_digest" varchar[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150205223042"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+Migrating to CreateAchievements (20150209220839)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "achievements" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "achievement_name" varchar, "date" date, "score" integer, "student_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150209220839"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (13.0ms)[0m  [1mINSERT INTO "teachers" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Susan Smith"], ["email", "SusanSmith@higher.edu"], ["password_digest", "$2a$10$yDcuAHVmXfX55R3XDPnhc.i2XOI0SWyjn/b/hh2RSl9/3YAIaZBXi"], ["created_at", "2015-02-09 22:41:46.872368"], ["updated_at", "2015-02-09 22:41:46.872368"]]
+  [1m[35m (103.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "teachers" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Tom Teacher"], ["email", "TomTeacher@higher.edu"], ["password_digest", "$2a$10$gbvbVWMWixhXWAWJ2ZdHteBcp6nWZT4dCfPP4iBioUVf1ENGLQJLO"], ["created_at", "2015-02-09 22:41:47.080042"], ["updated_at", "2015-02-09 22:41:47.080042"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "teachers" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Bob Builder"], ["email", "BobBuilder@higher.edu"], ["password_digest", "$2a$10$be/ibEl.q0BQ6vlVS4.JkO.FyoXTFWP6wdVmRWMum4Q/1M8Fsn6/."], ["created_at", "2015-02-09 22:41:47.156050"], ["updated_at", "2015-02-09 22:41:47.156050"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "students" ("name", "student_email", "password_digest", "teacher_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "sara"], ["student_email", "sara@sara.com"], ["password_digest", "$2a$10$Zm86ePQyMLUjWKV3kiBrie7cP.Yd7nfIJJiIWZRT.TeJHLGvXChGu"], ["teacher_id", 1], ["created_at", "2015-02-09 22:41:47.288328"], ["updated_at", "2015-02-09 22:41:47.288328"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "students" ("name", "student_email", "password_digest", "teacher_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "emily"], ["student_email", "emily@emily.com"], ["password_digest", "$2a$10$ehhZ59opEh6tY26.CT89wufGGMzzhSWBckw3SJ320e6ejZaiV1F6m"], ["teacher_id", 1], ["created_at", "2015-02-09 22:41:47.364583"], ["updated_at", "2015-02-09 22:41:47.364583"]]
+  [1m[35m (1.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "students" ("name", "student_email", "password_digest", "teacher_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "john"], ["student_email", "john@john.com"], ["password_digest", "$2a$10$7DELYplaj1Q6bkvoXkfdMeM4fFRlwH9YakE13CEpA5VY4NGKxRuFu"], ["teacher_id", 2], ["created_at", "2015-02-09 22:41:47.440411"], ["updated_at", "2015-02-09 22:41:47.440411"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "students" ("name", "student_email", "password_digest", "teacher_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "james"], ["student_email", "james@james.com"], ["password_digest", "$2a$10$tQHAtQK1TiUSCiL/Q05hH.q7K22k9gnNtMuablfPkAZI03.p3C9OW"], ["teacher_id", 2], ["created_at", "2015-02-09 22:41:47.516437"], ["updated_at", "2015-02-09 22:41:47.516437"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "students" ("name", "student_email", "password_digest", "teacher_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "mark"], ["student_email", "mark@mark.com"], ["password_digest", "$2a$10$6TlsGnEiiMThDVzzaMrY6.Znh/G2icb0j5s2yDKIg2Mt2e3kyxsZa"], ["teacher_id", 3], ["created_at", "2015-02-09 22:41:47.596103"], ["updated_at", "2015-02-09 22:41:47.596103"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "students" ("name", "student_email", "password_digest", "teacher_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "stacy"], ["student_email", "stacy@stacy.com"], ["password_digest", "$2a$10$hUgYlYP2bfuCs0U/UejWneyC2fpjuySlj7VcQWHFTLf57QsYA891K"], ["teacher_id", 3], ["created_at", "2015-02-09 22:41:47.672647"], ["updated_at", "2015-02-09 22:41:47.672647"]]
+  [1m[35m (1.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "parents" ("name", "email", "password_digest", "child_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "dad"], ["email", "dad@dad.com"], ["password_digest", "$2a$10$gZt4DMZcyvh/BMYIF2P21OcTTKit7jLdqRZBHJeFG9NlFLWfk6sy."], ["child_name", "sara"], ["created_at", "2015-02-09 22:41:47.758556"], ["updated_at", "2015-02-09 22:41:47.758556"]]
+  [1m[36m (11.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "parents" ("name", "email", "password_digest", "child_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "mom"], ["email", "mom@mom.com"], ["password_digest", "$2a$10$KYcYWIolilc7.DbBjqi2weSIp3JLl2qWlMMHj4RczBa490eNjjyJO"], ["child_name", "emily"], ["created_at", "2015-02-09 22:41:47.848335"], ["updated_at", "2015-02-09 22:41:47.848335"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "parents" ("name", "email", "password_digest", "child_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "herschel"], ["email", "herschel@herschel.com"], ["password_digest", "$2a$10$l0GSvJiW9BtfU8DM1iZaV.l4e7BU0l3hev64W5RhY/i4jhzAtIuRi"], ["child_name", "john"], ["created_at", "2015-02-09 22:41:47.924373"], ["updated_at", "2015-02-09 22:41:47.924373"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "parents" ("name", "email", "password_digest", "child_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "micah"], ["email", "micah@micah.com"], ["password_digest", "$2a$10$o/7C4iuWUeizxuZDi53o0uH1R9wKpANuGGWewKLU5I/L8aakWum0a"], ["child_name", "james"], ["created_at", "2015-02-09 22:41:48.000572"], ["updated_at", "2015-02-09 22:41:48.000572"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "parents" ("name", "email", "password_digest", "child_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "Sandy"], ["email", "Sandy@Sandy.com"], ["password_digest", "$2a$10$z8aloHhA2sMsfvUqH9pK5ezP.GQrPzgksALYb6gItRbN3rbvavEIi"], ["child_name", "mark"], ["created_at", "2015-02-09 22:41:48.077553"], ["updated_at", "2015-02-09 22:41:48.077553"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "parents" ("name", "email", "password_digest", "child_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "Joey"], ["email", "Joey@Joey.com"], ["password_digest", "$2a$10$chz.QYtvWm3vKDLnENtFr.69434Ou.ztXIOF8jTwGF6yj/9xAP8S6"], ["child_name", "stacy"], ["created_at", "2015-02-09 22:41:48.152718"], ["updated_at", "2015-02-09 22:41:48.152718"]]
+  [1m[35m (1.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "achievements" ("achievement_name", "date", "score", "student_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["achievement_name", "complete ruby project"], ["date", 134], ["score", 400], ["student_id", 1], ["created_at", "2015-02-09 22:41:48.194730"], ["updated_at", "2015-02-09 22:41:48.194730"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "achievements" ("achievement_name", "date", "score", "student_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["achievement_name", "complete rails project"], ["date", 335], ["score", 600], ["student_id", 1], ["created_at", "2015-02-09 22:41:48.198071"], ["updated_at", "2015-02-09 22:41:48.198071"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "achievements" ("achievement_name", "date", "score", "student_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["achievement_name", "complete pair project"], ["date", 111], ["score", 1000], ["student_id", 1], ["created_at", "2015-02-09 22:41:48.201434"], ["updated_at", "2015-02-09 22:41:48.201434"]]
+  [1m[36m (1.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "achievements" ("achievement_name", "date", "score", "student_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["achievement_name", "complete final project"], ["date", 22], ["score", 2000], ["student_id", 1], ["created_at", "2015-02-09 22:41:48.206153"], ["updated_at", "2015-02-09 22:41:48.206153"]]
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "achievements" ("achievement_name", "date", "score", "student_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["achievement_name", "present at demo day"], ["date", 167], ["score", 1000], ["student_id", 1], ["created_at", "2015-02-09 22:41:48.210118"], ["updated_at", "2015-02-09 22:41:48.210118"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "achievements" ("achievement_name", "date", "score", "student_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["achievement_name", "complete final project"], ["date", 22], ["score", 2000], ["student_id", 2], ["created_at", "2015-02-09 22:41:48.213682"], ["updated_at", "2015-02-09 22:41:48.213682"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "achievements" ("achievement_name", "date", "score", "student_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["achievement_name", "present at demo day"], ["date", 167], ["score", 1000], ["student_id", 2], ["created_at", "2015-02-09 22:41:48.217805"], ["updated_at", "2015-02-09 22:41:48.217805"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/" for ::1 at 2015-02-09 17:59:22 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+	bin/rake db:migrate RAILS_ENV=development
+
+):
+  activerecord (4.2.0) lib/active_record/migration.rb:393:in `check_pending!'
+  activerecord (4.2.0) lib/active_record/migration.rb:374:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:88:in `call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:734:in `_run_call_callbacks'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.0) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  web-console (2.0.0) lib/action_dispatch/debug_exceptions.rb:18:in `middleware_call'
+  web-console (2.0.0) lib/action_dispatch/debug_exceptions.rb:13:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_source.erb (2.8ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_trace.html.erb (1.8ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.0ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (95.5ms)
+  [1m[36m (53.5ms)[0m  [1mDROP TABLE "achievements"[0m
+  [1m[35m (33.8ms)[0m  CREATE TABLE "achievements" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "achievement_name" varchar, "date" date, "score" integer, "student_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (129.1ms)[0m  [1mDROP TABLE "parents"[0m
+  [1m[35m (1.4ms)[0m  CREATE TABLE "parents" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "child_name" varchar, "teacher_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar) 
+  [1m[36m (38.1ms)[0m  [1mDROP TABLE "students"[0m
+  [1m[35m (1.5ms)[0m  CREATE TABLE "students" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "student_email" varchar, "teacher_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar) 
+  [1m[36m (1.7ms)[0m  [1mDROP TABLE "teachers"[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "teachers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.3ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "achievements" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "achievement_name" varchar, "date" date, "score" integer, "student_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (12.0ms)[0m  [1mCREATE TABLE "parents" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "child_name" varchar, "teacher_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar) [0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "students" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "student_email" varchar, "teacher_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar) 
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "teachers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[36m (4.4ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (16.5ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150209220839')
+  [1m[36m (1.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150205200430')[0m
+  [1m[35m (1.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150205200621')
+  [1m[36m (1.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150205200651')[0m
+  [1m[35m (1.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150205223042')
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AchievementsStudents (20150209225248)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150209225248"]]
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+
+Started GET "/" for ::1 at 2015-02-09 18:00:25 -0500
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Processing by LoginController#login as HTML
+  Rendered login/login.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 3867ms (Views: 3768.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application-895b436cbc8bfff91fd0f9d252069237.css?body=1" for ::1 at 2015-02-09 18:00:30 -0500
+
+
+Started GET "/assets/achievements-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-02-09 18:00:30 -0500
+
+
+Started GET "/assets/login-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-02-09 18:00:30 -0500
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-02-09 18:00:30 -0500
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-02-09 18:00:30 -0500
+
+
+Started GET "/assets/teachers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-02-09 18:00:30 -0500
+
+
+Started GET "/assets/grades-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-02-09 18:00:30 -0500
+
+
+Started GET "/assets/students-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-02-09 18:00:30 -0500
+
+
+Started GET "/assets/turbolinks-da8ddad9c2c5483d4c5c30c1ce325253.js?body=1" for ::1 at 2015-02-09 18:00:30 -0500
+
+
+Started GET "/assets/parents-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-02-09 18:00:30 -0500
+
+
+Started GET "/assets/application-d7367d99d8aff5298ef2b6a651d03487.js?body=1" for ::1 at 2015-02-09 18:00:30 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (40.2ms)[0m  [1mINSERT INTO "teachers" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Mason Matthews"], ["email", "Mason@mason.com"], ["password_digest", "$2a$10$pzpv1ja6LsveCpXSFWbhlOUw2HogsU0O0A7Z2sCQNPUR9UlfRXR8K"], ["created_at", "2015-02-09 23:02:33.078563"], ["updated_at", "2015-02-09 23:02:33.078563"]]
+  [1m[35m (130.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "teachers" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Susan Smith"], ["email", "SusanSmith@higher.edu"], ["password_digest", "$2a$10$Dv77fOUHlEWzBbvyVvKste7Y4Ll6lomxxGUmhIYn6jkLwGza1LHPS"], ["created_at", "2015-02-09 23:02:33.338682"], ["updated_at", "2015-02-09 23:02:33.338682"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "teachers" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Tom Teacher"], ["email", "TomTeacher@higher.edu"], ["password_digest", "$2a$10$34aBCfseVDvhgWqcgTp6Hec9LLwlwq6I.zLigYVuoKuXLLCy0oUXe"], ["created_at", "2015-02-09 23:02:33.415255"], ["updated_at", "2015-02-09 23:02:33.415255"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "teachers" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Bob Builder"], ["email", "BobBuilder@higher.edu"], ["password_digest", "$2a$10$gRpIvctUkjkUmS1j.IRHj.jUt2zWmD5oRplukcyugVbGGrS9nutbm"], ["created_at", "2015-02-09 23:02:33.490177"], ["updated_at", "2015-02-09 23:02:33.490177"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "students" ("name", "student_email", "password_digest", "teacher_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "sara"], ["student_email", "sara@sara.com"], ["password_digest", "$2a$10$Va2cE5v.HPgp1fRZtr3J3.QpkI9P8zoPELIEm/7oWmt.AeOnSTPJC"], ["teacher_id", 1], ["created_at", "2015-02-09 23:02:33.673200"], ["updated_at", "2015-02-09 23:02:33.673200"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "students" ("name", "student_email", "password_digest", "teacher_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "emily"], ["student_email", "emily@emily.com"], ["password_digest", "$2a$10$fk9v/aN/AOVuquym3uNL6uXf/w.U.7WRaO3N.QxYNPrJAYVzOns2O"], ["teacher_id", 1], ["created_at", "2015-02-09 23:02:33.748803"], ["updated_at", "2015-02-09 23:02:33.748803"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "students" ("name", "student_email", "password_digest", "teacher_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "john"], ["student_email", "john@john.com"], ["password_digest", "$2a$10$07BbLLOULFO.oGB/GdjRpemr2BO98mSbZqapgWgDU8kSDMqn9XgPO"], ["teacher_id", 2], ["created_at", "2015-02-09 23:02:33.826650"], ["updated_at", "2015-02-09 23:02:33.826650"]]
+  [1m[35m (1.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "students" ("name", "student_email", "password_digest", "teacher_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "james"], ["student_email", "james@james.com"], ["password_digest", "$2a$10$SXY4AZnl2oJhxj39Q3dAo.t.CjroJb8iBKNCiY13SQ624xqrkhGyC"], ["teacher_id", 2], ["created_at", "2015-02-09 23:02:33.905734"], ["updated_at", "2015-02-09 23:02:33.905734"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "students" ("name", "student_email", "password_digest", "teacher_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "mark"], ["student_email", "mark@mark.com"], ["password_digest", "$2a$10$9cKbM0o2ympA6.xCXTPT1e7CEzR75t/aUlBFjSxD9JpUjOD5p.vgi"], ["teacher_id", 3], ["created_at", "2015-02-09 23:02:33.984276"], ["updated_at", "2015-02-09 23:02:33.984276"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "students" ("name", "student_email", "password_digest", "teacher_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "stacy"], ["student_email", "stacy@stacy.com"], ["password_digest", "$2a$10$IxljMRCs4geG5lhIiz4NE.R3rU5S6ilsA3DfgoRvJLeU7IXPNkdZi"], ["teacher_id", 3], ["created_at", "2015-02-09 23:02:34.060254"], ["updated_at", "2015-02-09 23:02:34.060254"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "parents" ("name", "email", "password_digest", "child_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "dad"], ["email", "dad@dad.com"], ["password_digest", "$2a$10$NMjOqHbrTIgmUFpkbLX4p./iibFbsTeZClzbRmJUvBIttdQpQWZdm"], ["child_name", "sara"], ["created_at", "2015-02-09 23:02:34.167968"], ["updated_at", "2015-02-09 23:02:34.167968"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "parents" ("name", "email", "password_digest", "child_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "mom"], ["email", "mom@mom.com"], ["password_digest", "$2a$10$6yH3TE1m84GhHdkTDDxdn..7Gv617jCkeeenfrwRV6Fl//N8qkO5a"], ["child_name", "emily"], ["created_at", "2015-02-09 23:02:34.243795"], ["updated_at", "2015-02-09 23:02:34.243795"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "parents" ("name", "email", "password_digest", "child_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "herschel"], ["email", "herschel@herschel.com"], ["password_digest", "$2a$10$4nY2gDE3w3u1ScoPtTiiYuwOGASbGV3et1AFrc9F4mS2lCEIgeuLS"], ["child_name", "john"], ["created_at", "2015-02-09 23:02:34.319752"], ["updated_at", "2015-02-09 23:02:34.319752"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "parents" ("name", "email", "password_digest", "child_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "micah"], ["email", "micah@micah.com"], ["password_digest", "$2a$10$XJzfLJnJSz5Iza1jX3nYre/RhoovFQoT.bTED9S6sp8ZvfIKfX2a2"], ["child_name", "james"], ["created_at", "2015-02-09 23:02:34.394765"], ["updated_at", "2015-02-09 23:02:34.394765"]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "parents" ("name", "email", "password_digest", "child_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "Sandy"], ["email", "Sandy@Sandy.com"], ["password_digest", "$2a$10$Yjikzzxz5nGxcRisAtFUK.4k/YdmcTClLGEVuj61gnWZaoTSezcMy"], ["child_name", "mark"], ["created_at", "2015-02-09 23:02:34.470796"], ["updated_at", "2015-02-09 23:02:34.470796"]]
+  [1m[35m (1.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "parents" ("name", "email", "password_digest", "child_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "Joey"], ["email", "Joey@Joey.com"], ["password_digest", "$2a$10$71qv.LeK7LZr8eHvZ082duIz1IqZYT3sSFJpzcr7g32uJBzC4ovMe"], ["child_name", "stacy"], ["created_at", "2015-02-09 23:02:34.548127"], ["updated_at", "2015-02-09 23:02:34.548127"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "achievements" ("achievement_name", "date", "score", "student_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["achievement_name", "complete ruby project"], ["date", 134], ["score", 400], ["student_id", 1], ["created_at", "2015-02-09 23:02:34.564875"], ["updated_at", "2015-02-09 23:02:34.564875"]]
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "achievements" ("achievement_name", "date", "score", "student_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["achievement_name", "complete rails project"], ["date", 335], ["score", 600], ["student_id", 1], ["created_at", "2015-02-09 23:02:34.569421"], ["updated_at", "2015-02-09 23:02:34.569421"]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "achievements" ("achievement_name", "date", "score", "student_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["achievement_name", "complete pair project"], ["date", 111], ["score", 1000], ["student_id", 1], ["created_at", "2015-02-09 23:02:34.573796"], ["updated_at", "2015-02-09 23:02:34.573796"]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "achievements" ("achievement_name", "date", "score", "student_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["achievement_name", "complete final project"], ["date", 22], ["score", 2000], ["student_id", 1], ["created_at", "2015-02-09 23:02:34.577441"], ["updated_at", "2015-02-09 23:02:34.577441"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "achievements" ("achievement_name", "date", "score", "student_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["achievement_name", "present at demo day"], ["date", 167], ["score", 1000], ["student_id", 1], ["created_at", "2015-02-09 23:02:34.580983"], ["updated_at", "2015-02-09 23:02:34.580983"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "achievements" ("achievement_name", "date", "score", "student_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["achievement_name", "complete final project"], ["date", 22], ["score", 2000], ["student_id", 2], ["created_at", "2015-02-09 23:02:34.584884"], ["updated_at", "2015-02-09 23:02:34.584884"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "achievements" ("achievement_name", "date", "score", "student_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["achievement_name", "present at demo day"], ["date", 167], ["score", 1000], ["student_id", 2], ["created_at", "2015-02-09 23:02:34.588418"], ["updated_at", "2015-02-09 23:02:34.588418"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+  [1m[36m (1.5ms)[0m  [1mDROP TABLE "achievements"[0m
+  [1m[35m (1.8ms)[0m  CREATE TABLE "achievements" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "achievement_name" varchar, "date" date, "score" integer, "student_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.3ms)[0m  [1mDROP TABLE "parents"[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "parents" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "child_name" varchar, "teacher_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar) 
+  [1m[36m (1.4ms)[0m  [1mDROP TABLE "students"[0m
+  [1m[35m (1.7ms)[0m  CREATE TABLE "students" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "student_email" varchar, "teacher_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar) 
+  [1m[36m (30.2ms)[0m  [1mDROP TABLE "teachers"[0m
+  [1m[35m (1.4ms)[0m  CREATE TABLE "teachers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.4ms)[0m  DROP TABLE "achievements"
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "achievements" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "achievement_name" varchar, "date" date, "score" integer, "student_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.3ms)[0m  DROP TABLE "parents"
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "parents" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "child_name" varchar, "teacher_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar) [0m
+  [1m[35m (1.2ms)[0m  DROP TABLE "students"
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "students" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "student_email" varchar, "teacher_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar) [0m
+  [1m[35m (1.6ms)[0m  DROP TABLE "teachers"
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "teachers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.3ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150209225248')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "teachers" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Mason Matthews"], ["email", "Mason@mason.com"], ["password_digest", "$2a$10$RKJ49cX12xZUtN8v7hlCseAX/s5LFqk/BKAegRiLZAr8vEAdsr1dK"], ["created_at", "2015-02-09 23:02:43.791287"], ["updated_at", "2015-02-09 23:02:43.791287"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "teachers" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Susan Smith"], ["email", "SusanSmith@higher.edu"], ["password_digest", "$2a$10$NVpWcejbUSfJjs3YSoqx..boGBj6w9Qq9vVPKqB9LjXP321D0nO0S"], ["created_at", "2015-02-09 23:02:43.881737"], ["updated_at", "2015-02-09 23:02:43.881737"]]
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "teachers" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Tom Teacher"], ["email", "TomTeacher@higher.edu"], ["password_digest", "$2a$10$fbVvYGYXvx2qp3liRObH2..8n7D2/II8y8okSbSJjwEM.f1f5B2ti"], ["created_at", "2015-02-09 23:02:43.960163"], ["updated_at", "2015-02-09 23:02:43.960163"]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "teachers" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Bob Builder"], ["email", "BobBuilder@higher.edu"], ["password_digest", "$2a$10$12mzmd/jCJPsrOBjTuwn3ePjmFtI6zFArHOKZxaPAaKlfsM/CPcq."], ["created_at", "2015-02-09 23:02:44.035543"], ["updated_at", "2015-02-09 23:02:44.035543"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "students" ("name", "student_email", "password_digest", "teacher_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "sara"], ["student_email", "sara@sara.com"], ["password_digest", "$2a$10$oGbsVoBg7TsxOEaN2PGw8.pFgKqgFR6ZPKJHdex8pa4QQXEiww7dq"], ["teacher_id", 1], ["created_at", "2015-02-09 23:02:44.175791"], ["updated_at", "2015-02-09 23:02:44.175791"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "students" ("name", "student_email", "password_digest", "teacher_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "emily"], ["student_email", "emily@emily.com"], ["password_digest", "$2a$10$GonlzP2NkGsYiEOVw.peheqFn531rTUZ3uMd99aDkvZty.9KZ.cja"], ["teacher_id", 1], ["created_at", "2015-02-09 23:02:44.253338"], ["updated_at", "2015-02-09 23:02:44.253338"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "students" ("name", "student_email", "password_digest", "teacher_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "john"], ["student_email", "john@john.com"], ["password_digest", "$2a$10$SSxzuEzvIwLx/RMP6HKcBOsg/OXL5bRKQLI9bhkqHTLNvlbIy2Qbe"], ["teacher_id", 2], ["created_at", "2015-02-09 23:02:44.333614"], ["updated_at", "2015-02-09 23:02:44.333614"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "students" ("name", "student_email", "password_digest", "teacher_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "james"], ["student_email", "james@james.com"], ["password_digest", "$2a$10$a8MnqcrsZK30xECHynoal.p/43WTx.gaWMLRNvdESiHmzUAP3w/m."], ["teacher_id", 2], ["created_at", "2015-02-09 23:02:44.409785"], ["updated_at", "2015-02-09 23:02:44.409785"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "students" ("name", "student_email", "password_digest", "teacher_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "mark"], ["student_email", "mark@mark.com"], ["password_digest", "$2a$10$RkYtOe0vs78/Wrf2.pM3KerqLuL.l3m7oEcqb2fl8SDw839LxWj1K"], ["teacher_id", 3], ["created_at", "2015-02-09 23:02:44.486099"], ["updated_at", "2015-02-09 23:02:44.486099"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "students" ("name", "student_email", "password_digest", "teacher_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "stacy"], ["student_email", "stacy@stacy.com"], ["password_digest", "$2a$10$u.dgJCuOtwBb7BqDbmEQJeZkLLye90XgU1vPnXnzWuPmaKAjYHCje"], ["teacher_id", 3], ["created_at", "2015-02-09 23:02:44.563241"], ["updated_at", "2015-02-09 23:02:44.563241"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "parents" ("name", "email", "password_digest", "child_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "dad"], ["email", "dad@dad.com"], ["password_digest", "$2a$10$G1X8rDHDO0N2lCG7nPXNTuYMVfyOttrtBB501UzAkNuHmiTuvbxf."], ["child_name", "sara"], ["created_at", "2015-02-09 23:02:44.651658"], ["updated_at", "2015-02-09 23:02:44.651658"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "parents" ("name", "email", "password_digest", "child_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "mom"], ["email", "mom@mom.com"], ["password_digest", "$2a$10$Iu29Hanjafpa0iofshQL4OHZiOrBZ8IqBHsMkzFthfUxhDYCu2MsO"], ["child_name", "emily"], ["created_at", "2015-02-09 23:02:44.729636"], ["updated_at", "2015-02-09 23:02:44.729636"]]
+  [1m[35m (1.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "parents" ("name", "email", "password_digest", "child_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "herschel"], ["email", "herschel@herschel.com"], ["password_digest", "$2a$10$96D0m7FhQUiVpUhIextaWu4m8cFNunYaC0ZKl.up/lmHHjchIJEmC"], ["child_name", "john"], ["created_at", "2015-02-09 23:02:44.808618"], ["updated_at", "2015-02-09 23:02:44.808618"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "parents" ("name", "email", "password_digest", "child_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "micah"], ["email", "micah@micah.com"], ["password_digest", "$2a$10$ye/0jKhDb1wKBNFPty0VJuP1wnBEUWRrPAgWWgP.VaqwRhreDWLhe"], ["child_name", "james"], ["created_at", "2015-02-09 23:02:44.883927"], ["updated_at", "2015-02-09 23:02:44.883927"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "parents" ("name", "email", "password_digest", "child_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "Sandy"], ["email", "Sandy@Sandy.com"], ["password_digest", "$2a$10$n4n8kYBypS4tTv5CT5PrjO7KrWW/VSEnldSwxqC2NqaCyES9n7Tre"], ["child_name", "mark"], ["created_at", "2015-02-09 23:02:44.961595"], ["updated_at", "2015-02-09 23:02:44.961595"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "parents" ("name", "email", "password_digest", "child_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "Joey"], ["email", "Joey@Joey.com"], ["password_digest", "$2a$10$Zwzq9ILPcnFzJtmgtAMRduqeM0vs4BqmmSwrYP6hMfryw.DxuDCiS"], ["child_name", "stacy"], ["created_at", "2015-02-09 23:02:45.040146"], ["updated_at", "2015-02-09 23:02:45.040146"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "achievements" ("achievement_name", "date", "score", "student_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["achievement_name", "complete ruby project"], ["date", 134], ["score", 400], ["student_id", 1], ["created_at", "2015-02-09 23:02:45.056607"], ["updated_at", "2015-02-09 23:02:45.056607"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "achievements" ("achievement_name", "date", "score", "student_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["achievement_name", "complete rails project"], ["date", 335], ["score", 600], ["student_id", 1], ["created_at", "2015-02-09 23:02:45.060746"], ["updated_at", "2015-02-09 23:02:45.060746"]]
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "achievements" ("achievement_name", "date", "score", "student_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["achievement_name", "complete pair project"], ["date", 111], ["score", 1000], ["student_id", 1], ["created_at", "2015-02-09 23:02:45.065305"], ["updated_at", "2015-02-09 23:02:45.065305"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "achievements" ("achievement_name", "date", "score", "student_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["achievement_name", "complete final project"], ["date", 22], ["score", 2000], ["student_id", 1], ["created_at", "2015-02-09 23:02:45.069248"], ["updated_at", "2015-02-09 23:02:45.069248"]]
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "achievements" ("achievement_name", "date", "score", "student_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["achievement_name", "present at demo day"], ["date", 167], ["score", 1000], ["student_id", 1], ["created_at", "2015-02-09 23:02:45.073221"], ["updated_at", "2015-02-09 23:02:45.073221"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "achievements" ("achievement_name", "date", "score", "student_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["achievement_name", "complete final project"], ["date", 22], ["score", 2000], ["student_id", 2], ["created_at", "2015-02-09 23:02:45.076902"], ["updated_at", "2015-02-09 23:02:45.076902"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "achievements" ("achievement_name", "date", "score", "student_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["achievement_name", "present at demo day"], ["date", 167], ["score", 1000], ["student_id", 2], ["created_at", "2015-02-09 23:02:45.081717"], ["updated_at", "2015-02-09 23:02:45.081717"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/" for ::1 at 2015-02-09 18:02:46 -0500
+Processing by LoginController#login as HTML
+  Rendered login/login.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 207ms (Views: 124.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application-895b436cbc8bfff91fd0f9d252069237.css?body=1" for ::1 at 2015-02-09 18:02:46 -0500
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-02-09 18:02:46 -0500
+
+
+Started GET "/assets/grades-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-02-09 18:02:46 -0500
+
+
+Started GET "/assets/turbolinks-da8ddad9c2c5483d4c5c30c1ce325253.js?body=1" for ::1 at 2015-02-09 18:02:46 -0500
+
+
+Started GET "/assets/achievements-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-02-09 18:02:46 -0500
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-02-09 18:02:46 -0500
+
+
+Started GET "/assets/login-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-02-09 18:02:47 -0500
+
+
+Started GET "/assets/parents-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-02-09 18:02:47 -0500
+
+
+Started GET "/assets/application-d7367d99d8aff5298ef2b6a651d03487.js?body=1" for ::1 at 2015-02-09 18:02:47 -0500
+
+
+Started GET "/assets/students-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-02-09 18:02:47 -0500
+
+
+Started GET "/assets/teachers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-02-09 18:02:47 -0500
+
+
+Started POST "/login/login" for ::1 at 2015-02-09 18:03:04 -0500
+Processing by LoginController#login as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tiXM4ZoMQ2VvP/Wd7tCI4kq4DafQm/OKYuc1H9XrfKtm672AqbjCZUQ/bWcFtXS0KwubRXovPLmG0wFzfH51wg==", "email"=>"Mason@mason.com", "password"=>"[FILTERED]", "type"=>"Teacher", "commit"=>"login"}
+  [1m[36mTeacher Load (0.9ms)[0m  [1mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."email" = ? LIMIT 1[0m  [["email", "Mason@mason.com"]]
+Redirected to http://localhost:3000/teachers
+Completed 302 Found in 223ms (ActiveRecord: 1.3ms)
+
+
+Started GET "/teachers" for ::1 at 2015-02-09 18:03:05 -0500
+Processing by TeachersController#index as HTML
+Completed 500 Internal Server Error in 3ms
+
+NameError (uninitialized constant TeachersController::Grade):
+  app/controllers/teachers_controller.rb:7:in `index'
+
+
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_source.erb (14.2ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_trace.html.erb (3.1ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.0ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (107.4ms)
+
+
+Started GET "/teachers" for ::1 at 2015-02-09 18:11:23 -0500
+Processing by TeachersController#index as HTML
+  [1m[35mStudent Load (0.4ms)[0m  SELECT "students".* FROM "students"
+  Rendered teachers/index.html.erb within layouts/application (18.0ms)
+Completed 500 Internal Server Error in 43ms
+
+ActionView::Template::Error (undefined method `get_assignments_for_student_email' for #<Class:0x007ff131937ba8>):
+     7:       <% Student.get_all_children_for_teacher_id( session[:teacher_id] ).each do |student| %>
+     8:         <tr><td><%=  student.name  %></td></tr>
+     9:         <tr>
+    10:           <% Achievement.get_assignments_for_student_email( student.student_email ).each do |achievement| %>
+    11:             <tr>
+    12:               <td><%= achievement.assignment_name %></td>
+    13:               <td><%= achievement.score %></td>
+  app/views/teachers/index.html.erb:10:in `block in _app_views_teachers_index_html_erb__3514436775077878350_70336947517520'
+  app/views/teachers/index.html.erb:7:in `each'
+  app/views/teachers/index.html.erb:7:in `_app_views_teachers_index_html_erb__3514436775077878350_70336947517520'
+
+
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_source.erb (8.3ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_trace.html.erb (3.2ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.0ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/template_error.html.erb within rescues/layout (84.0ms)
+
+
+Started GET "/teachers" for ::1 at 2015-02-09 18:19:19 -0500
+Processing by TeachersController#index as HTML
+  [1m[36mStudent Load (0.4ms)[0m  [1mSELECT "students".* FROM "students"[0m
+  Rendered teachers/index.html.erb within layouts/application (15.4ms)
+Completed 500 Internal Server Error in 31ms
+
+ActionView::Template::Error (undefined method `get_assignments_for_student_email' for #<Class:0x007ff13221ec58>):
+     7:       <% Student.get_all_children_for_teacher_id( session[:teacher_id] ).each do |student| %>
+     8:         <tr><td><%=  student.name  %></td></tr>
+     9:         <tr>
+    10:           <% Achievement.get_assignments_for_student_email( student.student_email ).each do |achievement| %>
+    11:             <tr>
+    12:               <td><%= achievement.assignment_name %></td>
+    13:               <td><%= achievement.score %></td>
+  app/views/teachers/index.html.erb:10:in `block in _app_views_teachers_index_html_erb__3514436775077878350_70336947517520'
+  app/views/teachers/index.html.erb:7:in `each'
+  app/views/teachers/index.html.erb:7:in `_app_views_teachers_index_html_erb__3514436775077878350_70336947517520'
+
+
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_source.erb (14.4ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_trace.html.erb (4.3ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.5ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/template_error.html.erb within rescues/layout (125.7ms)
+
+
+Started GET "/teachers" for ::1 at 2015-02-09 18:19:23 -0500
+Processing by TeachersController#index as HTML
+  [1m[35mStudent Load (0.2ms)[0m  SELECT "students".* FROM "students"
+  Rendered teachers/index.html.erb within layouts/application (5.1ms)
+Completed 500 Internal Server Error in 15ms
+
+ActionView::Template::Error (undefined method `get_assignments_for_student_email' for #<Class:0x007ff13221ec58>):
+     7:       <% Student.get_all_children_for_teacher_id( session[:teacher_id] ).each do |student| %>
+     8:         <tr><td><%=  student.name  %></td></tr>
+     9:         <tr>
+    10:           <% Achievement.get_assignments_for_student_email( student.student_email ).each do |achievement| %>
+    11:             <tr>
+    12:               <td><%= achievement.assignment_name %></td>
+    13:               <td><%= achievement.score %></td>
+  app/views/teachers/index.html.erb:10:in `block in _app_views_teachers_index_html_erb__3514436775077878350_70336947517520'
+  app/views/teachers/index.html.erb:7:in `each'
+  app/views/teachers/index.html.erb:7:in `_app_views_teachers_index_html_erb__3514436775077878350_70336947517520'
+
+
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_source.erb (8.2ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_trace.html.erb (3.5ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.0ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/template_error.html.erb within rescues/layout (84.2ms)
+
+
+Started GET "/teachers" for ::1 at 2015-02-09 20:02:02 -0500
+Processing by TeachersController#index as HTML
+  [1m[36mStudent Load (44.1ms)[0m  [1mSELECT "students".* FROM "students"[0m
+  Rendered teachers/index.html.erb within layouts/application (108.7ms)
+Completed 500 Internal Server Error in 218ms
+
+ActionView::Template::Error (undefined method `each' for #<Class:0x007ff13221ec58>):
+     7:       <% Student.get_all_children_for_teacher_id( session[:teacher_id] ).each do |student| %>
+     8:         <tr><td><%=  student.name  %></td></tr>
+     9:         <tr>
+    10:           <% Achievement.each do |achievement| %>
+    11:             <tr>
+    12:               <td><%= achievement.achievement_name %></td>
+    13:               <td><%= achievement.date %></td>
+  app/views/teachers/index.html.erb:10:in `block in _app_views_teachers_index_html_erb__3514436775077878350_70336947180160'
+  app/views/teachers/index.html.erb:7:in `each'
+  app/views/teachers/index.html.erb:7:in `_app_views_teachers_index_html_erb__3514436775077878350_70336947180160'
+
+
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_source.erb (14.4ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_trace.html.erb (3.5ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.3ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/template_error.html.erb within rescues/layout (96.8ms)
+
+
+Started GET "/teachers" for ::1 at 2015-02-09 20:26:54 -0500
+Processing by TeachersController#index as HTML
+  [1m[35mStudent Load (19.0ms)[0m  SELECT "students".* FROM "students"
+  Rendered teachers/index.html.erb within layouts/application (25.3ms)
+Completed 500 Internal Server Error in 51ms
+
+ActionView::Template::Error (undefined method `each' for #<Class:0x007ff13221ec58>):
+     7:       <% Student.get_all_children_for_teacher_id( session[:teacher_id] ).each do |student| %>
+     8:         <tr><td><%=  student.name  %></td></tr>
+     9:         <tr>
+    10:           <% Achievement.each do |achievement| %>
+    11:             <tr>
+    12:               <td><%= achievement.achievement_name %></td>
+    13:               <td><%= achievement.date %></td>
+  app/views/teachers/index.html.erb:10:in `block in _app_views_teachers_index_html_erb__3514436775077878350_70336947180160'
+  app/views/teachers/index.html.erb:7:in `each'
+  app/views/teachers/index.html.erb:7:in `_app_views_teachers_index_html_erb__3514436775077878350_70336947180160'
+
+
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_source.erb (8.2ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_trace.html.erb (3.4ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.7ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/template_error.html.erb within rescues/layout (87.2ms)
+
+
+Started GET "/teachers" for ::1 at 2015-02-09 20:27:09 -0500
+Processing by TeachersController#index as HTML
+  [1m[36mStudent Load (0.2ms)[0m  [1mSELECT "students".* FROM "students"[0m
+  Rendered teachers/index.html.erb within layouts/application (5.8ms)
+Completed 500 Internal Server Error in 16ms
+
+ActionView::Template::Error (undefined method `get_assignments_for_student_email' for #<Class:0x007ff13221ec58>):
+     7:       <% Student.get_all_children_for_teacher_id( session[:teacher_id] ).each do |student| %>
+     8:         <tr><td><%=  student.name  %></td></tr>
+     9:         <tr>
+    10:           <% Achievement.get_assignments_for_student_email( student.student_email ).each do |achievement| %>
+    11:             <tr>
+    12:               <td><%= achievement.achievement_name %></td>
+    13:               <td><%= achievement.date %></td>
+  app/views/teachers/index.html.erb:10:in `block in _app_views_teachers_index_html_erb__3514436775077878350_70336936565860'
+  app/views/teachers/index.html.erb:7:in `each'
+  app/views/teachers/index.html.erb:7:in `_app_views_teachers_index_html_erb__3514436775077878350_70336936565860'
+
+
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_source.erb (8.0ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_trace.html.erb (3.2ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.0ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/template_error.html.erb within rescues/layout (87.6ms)
+
+
+Started GET "/teachers" for ::1 at 2015-02-09 20:38:43 -0500
+Processing by TeachersController#index as HTML
+  [1m[35mStudent Load (50.6ms)[0m  SELECT "students".* FROM "students"
+  Rendered teachers/index.html.erb within layouts/application (102.5ms)
+Completed 500 Internal Server Error in 221ms
+
+ActionView::Template::Error (undefined method `achievements' for #<Class:0x007ff132128f88>):
+     7:       <% Student.get_all_children_for_teacher_id( session[:teacher_id] ).each do |student| %>
+     8:         <tr><td><%=  student.name  %></td></tr>
+     9:         <tr>
+    10:           <% Student.achievements.each do |achievement| %>
+    11:             <tr>
+    12:               <td><%= achievement.achievement_name %></td>
+    13:               <td><%= achievement.date %></td>
+  app/views/teachers/index.html.erb:10:in `block in _app_views_teachers_index_html_erb__3514436775077878350_70336893690080'
+  app/views/teachers/index.html.erb:7:in `each'
+  app/views/teachers/index.html.erb:7:in `_app_views_teachers_index_html_erb__3514436775077878350_70336893690080'
+
+
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_source.erb (8.3ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_trace.html.erb (3.2ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (20.5ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.0ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/template_error.html.erb within rescues/layout (109.5ms)
+
+
+Started GET "/teachers" for ::1 at 2015-02-09 20:39:14 -0500
+Processing by TeachersController#index as HTML
+  [1m[36mStudent Load (18.1ms)[0m  [1mSELECT "students".* FROM "students"[0m
+  Rendered teachers/index.html.erb within layouts/application (172.3ms)
+Completed 500 Internal Server Error in 194ms
+
+ActionView::Template::Error (Could not find table 'achievements_students'):
+     7:       <% Student.get_all_children_for_teacher_id( session[:teacher_id] ).each do |student| %>
+     8:         <tr><td><%=  student.name  %></td></tr>
+     9:         <tr>
+    10:           <% student.achievements.each do |achievement| %>
+    11:             <tr>
+    12:               <td><%= achievement.achievement_name %></td>
+    13:               <td><%= achievement.date %></td>
+  app/views/teachers/index.html.erb:10:in `block in _app_views_teachers_index_html_erb__3514436775077878350_70336953002860'
+  app/views/teachers/index.html.erb:7:in `each'
+  app/views/teachers/index.html.erb:7:in `_app_views_teachers_index_html_erb__3514436775077878350_70336953002860'
+
+
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_source.erb (12.8ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_trace.html.erb (4.3ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.0ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/template_error.html.erb within rescues/layout (96.5ms)
+
+
+Started GET "/teachers" for ::1 at 2015-02-09 20:43:46 -0500
+Processing by TeachersController#index as HTML
+  [1m[35mStudent Load (0.2ms)[0m  SELECT "students".* FROM "students"
+  Rendered teachers/index.html.erb within layouts/application (5.3ms)
+Completed 500 Internal Server Error in 14ms
+
+ActionView::Template::Error (Could not find table 'achievements_students'):
+     7:       <% Student.get_all_children_for_teacher_id( session[:teacher_id] ).each do |student| %>
+     8:         <tr><td><%=  student.name  %></td></tr>
+     9:         <tr>
+    10:           <% student.achievements.each do |achievement| %>
+    11:             <tr>
+    12:               <td><%= achievement.achievement_name %></td>
+    13:               <td><%= achievement.date %></td>
+  app/views/teachers/index.html.erb:10:in `block in _app_views_teachers_index_html_erb__3514436775077878350_70336953002860'
+  app/views/teachers/index.html.erb:7:in `each'
+  app/views/teachers/index.html.erb:7:in `_app_views_teachers_index_html_erb__3514436775077878350_70336953002860'
+
+
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_source.erb (9.4ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_trace.html.erb (3.5ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.0ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/template_error.html.erb within rescues/layout (86.4ms)
+
+
+Started GET "/teachers" for ::1 at 2015-02-09 20:44:41 -0500
+Processing by TeachersController#index as HTML
+  [1m[36mStudent Load (18.8ms)[0m  [1mSELECT "students".* FROM "students"[0m
+  Rendered teachers/index.html.erb within layouts/application (25.1ms)
+Completed 500 Internal Server Error in 47ms
+
+ActionView::Template::Error (undefined method `achievements' for nil:NilClass):
+     7:       <% Student.get_all_children_for_teacher_id( session[:teacher_id] ).each do |student| %>
+     8:         <tr><td><%=  student.name  %></td></tr>
+     9:         <tr>
+    10:           <% @student.achievements.each do |achievement| %>
+    11:             <tr>
+    12:               <td><%= achievement.achievement_name %></td>
+    13:               <td><%= achievement.date %></td>
+  app/views/teachers/index.html.erb:10:in `block in _app_views_teachers_index_html_erb__3514436775077878350_70336925087580'
+  app/views/teachers/index.html.erb:7:in `each'
+  app/views/teachers/index.html.erb:7:in `_app_views_teachers_index_html_erb__3514436775077878350_70336925087580'
+
+
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_source.erb (10.6ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_trace.html.erb (3.5ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.0ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/template_error.html.erb within rescues/layout (88.7ms)
+
+
+Started GET "/teachers" for ::1 at 2015-02-09 20:45:14 -0500
+Processing by TeachersController#index as HTML
+  [1m[35mStudent Load (0.2ms)[0m  SELECT "students".* FROM "students"
+  [1m[36mAchievement Load (67.9ms)[0m  [1mSELECT "achievements".* FROM "achievements"[0m
+  [1m[35mTeacher Load (61.9ms)[0m  SELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered teachers/index.html.erb within layouts/application (147.4ms)
+  [1m[36mTeacher Load (0.2ms)[0m  [1mSELECT "teachers".* FROM "teachers"[0m
+Completed 200 OK in 613ms (Views: 202.6ms | ActiveRecord: 130.6ms)
+
+
+Started GET "/assets/application-895b436cbc8bfff91fd0f9d252069237.css?body=1" for ::1 at 2015-02-09 20:45:15 -0500
+
+
+Started GET "/assets/achievements-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-02-09 20:45:15 -0500
+
+
+Started GET "/assets/login-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-02-09 20:45:15 -0500
+
+
+Started GET "/assets/parents-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-02-09 20:45:15 -0500
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-02-09 20:45:15 -0500
+
+
+Started GET "/assets/students-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-02-09 20:45:15 -0500
+
+
+Started GET "/assets/teachers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-02-09 20:45:15 -0500
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-02-09 20:45:15 -0500
+
+
+Started GET "/assets/grades-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-02-09 20:45:15 -0500
+
+
+Started GET "/assets/turbolinks-da8ddad9c2c5483d4c5c30c1ce325253.js?body=1" for ::1 at 2015-02-09 20:45:15 -0500
+
+
+Started GET "/assets/application-d7367d99d8aff5298ef2b6a651d03487.js?body=1" for ::1 at 2015-02-09 20:45:15 -0500
