@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  achievement_name: MyString
+  date: 2015-02-09
+  score: 1
+  student_id: 1
+
+two:
+  achievement_name: MyString
+  date: 2015-02-09
+  score: 1
+  student_id: 1
