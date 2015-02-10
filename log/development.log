@@ -742,3 +742,81 @@ Started GET "/assets/turbolinks-da8ddad9c2c5483d4c5c30c1ce325253.js?body=1" for 
 
 
 Started GET "/assets/application-d7367d99d8aff5298ef2b6a651d03487.js?body=1" for ::1 at 2015-02-09 20:45:15 -0500
+
+
+Started GET "/teachers/new" for ::1 at 2015-02-09 21:38:18 -0500
+Processing by TeachersController#new as HTML
+  Rendered teachers/_form.html.erb (230.7ms)
+  Rendered teachers/new.html.erb within layouts/application (373.4ms)
+Completed 200 OK in 559ms (Views: 497.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/students/new" for ::1 at 2015-02-09 21:38:21 -0500
+Processing by StudentsController#new as HTML
+  [1m[35mTeacher Load (0.3ms)[0m  SELECT "teachers".* FROM "teachers"
+  Rendered students/_form.html.erb (24.7ms)
+  Rendered students/new.html.erb within layouts/application (30.0ms)
+Completed 200 OK in 267ms (Views: 124.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/teachers/1/edit" for ::1 at 2015-02-09 21:38:25 -0500
+Processing by TeachersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  Rendered teachers/edit.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 120ms (Views: 93.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/teachers" for ::1 at 2015-02-09 22:34:24 -0500
+
+SyntaxError (/Users/mhome/TIY_winter/homework/achievement_gradebook/config/routes.rb:78: syntax error, unexpected end-of-input, expecting keyword_end):
+  config/routes.rb:78: syntax error, unexpected end-of-input, expecting keyword_end
+
+
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_source.erb (4.3ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.5ms)
+  Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (81.6ms)
+
+
+Started GET "/teachers" for ::1 at 2015-02-09 22:34:54 -0500
+Processing by TeachersController#index as HTML
+  [1m[36mStudent Load (0.3ms)[0m  [1mSELECT "students".* FROM "students"[0m
+  [1m[35mAchievement Load (0.2ms)[0m  SELECT "achievements".* FROM "achievements"
+  [1m[36mTeacher Load (0.2ms)[0m  [1mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered teachers/index.html.erb within layouts/application (25.4ms)
+  [1m[35mTeacher Load (0.2ms)[0m  SELECT "teachers".* FROM "teachers"
+Completed 200 OK in 227ms (Views: 140.5ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/assets/application-895b436cbc8bfff91fd0f9d252069237.css?body=1" for ::1 at 2015-02-09 22:34:55 -0500
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-02-09 22:34:55 -0500
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-02-09 22:34:55 -0500
+
+
+Started GET "/assets/achievements-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-02-09 22:34:55 -0500
+
+
+Started GET "/assets/parents-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-02-09 22:34:55 -0500
+
+
+Started GET "/assets/login-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-02-09 22:34:55 -0500
+
+
+Started GET "/assets/teachers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-02-09 22:34:55 -0500
+
+
+Started GET "/assets/application-d7367d99d8aff5298ef2b6a651d03487.js?body=1" for ::1 at 2015-02-09 22:34:55 -0500
+
+
+Started GET "/assets/grades-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-02-09 22:34:55 -0500
+
+
+Started GET "/assets/turbolinks-da8ddad9c2c5483d4c5c30c1ce325253.js?body=1" for ::1 at 2015-02-09 22:34:55 -0500
+
+
+Started GET "/assets/students-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-02-09 22:34:55 -0500
