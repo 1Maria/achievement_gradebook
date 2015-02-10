@@ -4,17 +4,17 @@
   [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
 Migrating to CreateTeachers (20150205200430)
   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
-  [1m[35m (0.6ms)[0m  CREATE TABLE "teachers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[35m (0.6ms)[0m  CREATE TABLE "teachers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)
   [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150205200430"]]
   [1m[35m (1.1ms)[0m  commit transaction
 Migrating to CreateStudents (20150205200621)
   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
-  [1m[35m (0.5ms)[0m  CREATE TABLE "students" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "student_email" varchar, "teacher_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[35m (0.5ms)[0m  CREATE TABLE "students" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "student_email" varchar, "teacher_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)
   [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150205200621"]]
   [1m[35m (1.0ms)[0m  commit transaction
 Migrating to CreateParents (20150205200651)
   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
-  [1m[35m (0.6ms)[0m  CREATE TABLE "parents" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "child_name" varchar, "teacher_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[35m (0.6ms)[0m  CREATE TABLE "parents" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "child_name" varchar, "teacher_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)
   [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150205200651"]]
   [1m[35m (2.4ms)[0m  commit transaction
 Migrating to Createpasswords (20150205223042)
@@ -150,19 +150,19 @@ Migrations are pending. To resolve this issue, run:
   Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.0ms)
   Rendered /Users/mhome/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (95.5ms)
   [1m[36m (53.5ms)[0m  [1mDROP TABLE "achievements"[0m
-  [1m[35m (33.8ms)[0m  CREATE TABLE "achievements" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "achievement_name" varchar, "date" date, "score" integer, "student_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[35m (33.8ms)[0m  CREATE TABLE "achievements" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "achievement_name" varchar, "date" date, "score" integer, "student_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)
   [1m[36m (129.1ms)[0m  [1mDROP TABLE "parents"[0m
-  [1m[35m (1.4ms)[0m  CREATE TABLE "parents" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "child_name" varchar, "teacher_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar) 
+  [1m[35m (1.4ms)[0m  CREATE TABLE "parents" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "child_name" varchar, "teacher_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar)
   [1m[36m (38.1ms)[0m  [1mDROP TABLE "students"[0m
-  [1m[35m (1.5ms)[0m  CREATE TABLE "students" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "student_email" varchar, "teacher_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar) 
+  [1m[35m (1.5ms)[0m  CREATE TABLE "students" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "student_email" varchar, "teacher_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar)
   [1m[36m (1.7ms)[0m  [1mDROP TABLE "teachers"[0m
-  [1m[35m (1.2ms)[0m  CREATE TABLE "teachers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[35m (1.2ms)[0m  CREATE TABLE "teachers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)
   [1m[36m (0.3ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
-  [1m[35m (1.2ms)[0m  CREATE TABLE "achievements" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "achievement_name" varchar, "date" date, "score" integer, "student_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[35m (1.2ms)[0m  CREATE TABLE "achievements" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "achievement_name" varchar, "date" date, "score" integer, "student_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)
   [1m[36m (12.0ms)[0m  [1mCREATE TABLE "parents" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "child_name" varchar, "teacher_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar) [0m
-  [1m[35m (1.2ms)[0m  CREATE TABLE "students" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "student_email" varchar, "teacher_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar) 
+  [1m[35m (1.2ms)[0m  CREATE TABLE "students" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "student_email" varchar, "teacher_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar)
   [1m[36m (1.2ms)[0m  [1mCREATE TABLE "teachers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
-  [1m[35m (1.3ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[35m (1.3ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL)
   [1m[36m (4.4ms)[0m  [1mselect sqlite_version(*)[0m
   [1m[35m (16.5ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
   [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
@@ -289,13 +289,13 @@ Started GET "/assets/application-d7367d99d8aff5298ef2b6a651d03487.js?body=1" for
   [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "achievements" ("achievement_name", "date", "score", "student_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["achievement_name", "present at demo day"], ["date", 167], ["score", 1000], ["student_id", 2], ["created_at", "2015-02-09 23:02:34.588418"], ["updated_at", "2015-02-09 23:02:34.588418"]]
   [1m[35m (1.1ms)[0m  commit transaction
   [1m[36m (1.5ms)[0m  [1mDROP TABLE "achievements"[0m
-  [1m[35m (1.8ms)[0m  CREATE TABLE "achievements" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "achievement_name" varchar, "date" date, "score" integer, "student_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[35m (1.8ms)[0m  CREATE TABLE "achievements" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "achievement_name" varchar, "date" date, "score" integer, "student_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)
   [1m[36m (1.3ms)[0m  [1mDROP TABLE "parents"[0m
-  [1m[35m (1.3ms)[0m  CREATE TABLE "parents" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "child_name" varchar, "teacher_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar) 
+  [1m[35m (1.3ms)[0m  CREATE TABLE "parents" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "child_name" varchar, "teacher_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar)
   [1m[36m (1.4ms)[0m  [1mDROP TABLE "students"[0m
-  [1m[35m (1.7ms)[0m  CREATE TABLE "students" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "student_email" varchar, "teacher_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar) 
+  [1m[35m (1.7ms)[0m  CREATE TABLE "students" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "student_email" varchar, "teacher_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar)
   [1m[36m (30.2ms)[0m  [1mDROP TABLE "teachers"[0m
-  [1m[35m (1.4ms)[0m  CREATE TABLE "teachers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[35m (1.4ms)[0m  CREATE TABLE "teachers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)
   [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
   [1m[35m (1.4ms)[0m  DROP TABLE "achievements"
   [1m[36m (1.1ms)[0m  [1mCREATE TABLE "achievements" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "achievement_name" varchar, "date" date, "score" integer, "student_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
@@ -742,6 +742,7 @@ Started GET "/assets/turbolinks-da8ddad9c2c5483d4c5c30c1ce325253.js?body=1" for 
 
 
 Started GET "/assets/application-d7367d99d8aff5298ef2b6a651d03487.js?body=1" for ::1 at 2015-02-09 20:45:15 -0500
+<<<<<<< HEAD
 
 
 Started GET "/teachers/new" for ::1 at 2015-02-09 21:38:18 -0500
