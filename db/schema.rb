@@ -41,6 +41,11 @@ ActiveRecord::Schema.define(version: 20150209225248) do
     t.string   "password_digest"
   end
 
+  create_table "students_achievements", id: false, force: :cascade do |t|
+    t.integer "student_id"
+    t.integer "achievement_id"
+  end
+
   create_table "teachers", force: :cascade do |t|
     t.string   "name"
     t.string   "email"

@@ -1,6 +1,6 @@
 <h1>Teacher Dashboard</h1>
 
-<%= link_to 'Create new achievement', new_achievement_path %><br><br>
+<%= link_to 'Create new achievement', new_achievements_students_path %><br><br>
 
 <table>
   <tbody>
@@ -10,10 +10,7 @@
           <% @achievements.each do |achievement| %>
             <tr>
               <td><%= achievement.achievement_name %></td>
-              <td><%= achievement.date %></td>
               <td><%= achievement.score %></td>
-              <td><%= link_to 'Edit', edit_achievement_path(achievement) %></td>
-              <td><%= link_to 'Destroy', achievement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>
           <% end %>
         </tr>
